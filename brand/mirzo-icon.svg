@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512" style="color:#D4AF37" role="img" aria-label="mirzo logo"><rect width="120" height="120" rx="24" fill="#0F172A"/><g transform="translate(14 14) scale(.7667)">
+  <path d="M20 104 V58 C20 40 30 30 40 22 C50 30 60 40 60 58 V104" fill="none" stroke="#D4AF37" stroke-width="5.5" stroke-linejoin="round"/>
+  <path d="M60 58 C60 40 70 30 80 22 C90 30 100 40 100 58 V104" fill="none" stroke="#D4AF37" stroke-width="5.5" stroke-linejoin="round"/>
+  <path d="M12 104 H108" stroke="#D4AF37" stroke-width="5.5" stroke-linecap="round"/>
+  <polygon points="60.00,72.00 61.53,78.30 67.07,74.93 63.70,80.47 70.00,82.00 63.70,83.53 67.07,89.07 61.53,85.70 60.00,92.00 58.47,85.70 52.93,89.07 56.30,83.53 50.00,82.00 56.30,80.47 52.93,74.93 58.47,78.30" fill="#D4AF37"/></g></svg>

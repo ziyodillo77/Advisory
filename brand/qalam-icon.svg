@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512" style="color:#D4AF37" role="img" aria-label="qalam logo"><rect width="120" height="120" rx="24" fill="#0F172A"/><g transform="translate(14 14) scale(.7667)">
+  <g transform="rotate(35 60 60)">
+    <path d="M60 110 L38 66 C36 60 40 54 44 50 V18 H76 V50 C80 54 84 60 82 66 Z" fill="none" stroke="#D4AF37" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M60 108 V74" stroke="#D4AF37" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="60" cy="68" r="5" fill="#D4AF37"/>
+    <path d="M44 34 H76" stroke="#D4AF37" stroke-width="4"/>
+  </g></g></svg>

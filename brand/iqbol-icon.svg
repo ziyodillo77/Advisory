@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512" style="color:#D4AF37" role="img" aria-label="iqbol logo"><rect width="120" height="120" rx="24" fill="#0F172A"/><g transform="translate(14 14) scale(.7667)">
+  <path d="M28 78 A32 32 0 0 1 92 78" fill="none" stroke="#D4AF37" stroke-width="5"/>
+  <path d="M14 78 H106" stroke="#D4AF37" stroke-width="5" stroke-linecap="round"/>
+  <path d="M60 18 V32 M30 30 L38 40 M90 30 L82 40 M14 54 L26 58 M106 54 L94 58" stroke="#D4AF37" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M30 92 H90 M44 104 H76" stroke="#D4AF37" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+  <path d="M46 70 L60 56 L74 70" fill="none" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512" style="color:#D4AF37" role="img" aria-label="registan logo"><rect width="120" height="120" rx="24" fill="#0F172A"/><g transform="translate(14 14) scale(.7667)">
+  <path d="M44 104 V56 C44 40 52 32 60 24 C68 32 76 40 76 56 V104" fill="none" stroke="#D4AF37" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M12 104 V70 C12 58 18 52 25 46 C32 52 38 58 38 70 V104" fill="none" stroke="#D4AF37" stroke-width="4.5" stroke-linejoin="round"/>
+  <path d="M82 104 V70 C82 58 88 52 95 46 C102 52 108 58 108 70 V104" fill="none" stroke="#D4AF37" stroke-width="4.5" stroke-linejoin="round"/>
+  <path d="M6 108 H114" stroke="#D4AF37" stroke-width="5" stroke-linecap="round"/>
+  <polygon points="60.00,5.00 60.99,9.60 64.95,7.05 62.40,11.01 67.00,12.00 62.40,12.99 64.95,16.95 60.99,14.40 60.00,19.00 59.01,14.40 55.05,16.95 57.60,12.99 53.00,12.00 57.60,11.01 55.05,7.05 59.01,9.60" fill="#D4AF37"/></g></svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512" style="color:#D4AF37" role="img" aria-label="karvon logo"><rect width="120" height="120" rx="24" fill="#0F172A"/><g transform="translate(14 14) scale(.7667)">
+  <path d="M30 108 V56 C30 36 44 24 60 14 C76 24 90 36 90 56 V108" fill="none" stroke="#D4AF37" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M18 108 H102" stroke="#D4AF37" stroke-width="5" stroke-linecap="round"/>
+  <path d="M46 98 C46 84 74 84 74 70 C74 58 60 58 60 46" fill="none" stroke="#D4AF37" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="0.1 9"/>
+  <polygon points="60.00,25.00 61.84,32.16 69.00,34.00 61.84,35.84 60.00,43.00 58.16,35.84 51.00,34.00 58.16,32.16" fill="#D4AF37"/></g></svg>

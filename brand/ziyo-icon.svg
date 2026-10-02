@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512" style="color:#D4AF37" role="img" aria-label="ziyo logo"><rect width="120" height="120" rx="24" fill="#0F172A"/><g transform="translate(14 14) scale(.7667)">
+  <polygon points="60.00,14.00 73.47,27.47 92.53,27.47 92.53,46.53 106.00,60.00 92.53,73.47 92.53,92.53 73.47,92.53 60.00,106.00 46.53,92.53 27.47,92.53 27.47,73.47 14.00,60.00 27.47,46.53 27.47,27.47 46.53,27.47" fill="none" stroke="#D4AF37" stroke-width="4.5" stroke-linejoin="round"/>
+  <circle cx="60" cy="60" r="22" fill="none" stroke="#D4AF37" stroke-width="2.5" opacity=".55"/>
+  <polygon points="60.00,45.00 62.30,54.46 70.61,49.39 65.54,57.70 75.00,60.00 65.54,62.30 70.61,70.61 62.30,65.54 60.00,75.00 57.70,65.54 49.39,70.61 54.46,62.30 45.00,60.00 54.46,57.70 49.39,49.39 57.70,54.46" fill="#D4AF37"/></g></svg>

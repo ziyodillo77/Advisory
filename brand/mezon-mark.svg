@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512" style="color:#D4AF37" role="img" aria-label="mezon logo">
+  <polygon points="60.00,9.00 61.07,13.41 64.95,11.05 62.59,14.93 67.00,16.00 62.59,17.07 64.95,20.95 61.07,18.59 60.00,23.00 58.93,18.59 55.05,20.95 57.41,17.07 53.00,16.00 57.41,14.93 55.05,11.05 58.93,13.41" fill="#D4AF37"/>
+  <path d="M60 25 V96 M42 100 H78 M20 34 H100" stroke="#D4AF37" stroke-width="5" stroke-linecap="round"/>
+  <path d="M27 34 L15 64 M27 34 L39 64 M93 34 L81 64 M93 34 L105 64" stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
+  <path d="M11 64 Q27 82 43 64 Z M77 64 Q93 82 109 64 Z" fill="#D4AF37"/></svg>
