@@ -274,7 +274,11 @@ def build(check=False):
     (DIST / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
     (DIST / "_headers").write_text(HEADERS, encoding="utf-8")
-    (DIST / "_redirects").write_text("/en/*  /:splat  301\n", encoding="utf-8")
+    # Secondary domains (aliases in Netlify) forward to the main .com address.
+    aliases = "".join(f"{proto}://{host}/*  https://mezonadvisory.com/:splat  301!\n"
+                      for host in ("mezonadvisory.uz", "www.mezonadvisory.uz")
+                      for proto in ("https", "http"))
+    (DIST / "_redirects").write_text(aliases + "/en/*  /:splat  301\n", encoding="utf-8")
 
     print(f"Built {len(LANGS)} languages x {len(PAGES)} pages into {DIST}")
     if problems:

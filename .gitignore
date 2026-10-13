@@ -2,3 +2,4 @@
 *.bak
 .claude/
 __pycache__/
+.netlify/
