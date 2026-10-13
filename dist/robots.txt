@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.mizanadvisory.com/sitemap.xml
+Sitemap: https://www.mezonadvisory.com/sitemap.xml

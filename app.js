@@ -1,5 +1,5 @@
 /**
- * MIZAN ADVISORY | MIRZAMOYDINOV & PARTNERS
+ * MEZON ADVISORY
  * Premier Financial, Audit, Tax & Corporate Advisory in Uzbekistan
  *
  * Page text is translated at build time (see build.py and i18n/*.json).
@@ -16,10 +16,8 @@ const ANALYTICS = {
   metaPixel: ''       // Meta (Instagram/Facebook) Pixel ID, e.g. '1234567890'
 };
 
-const CONTACT = {
-  telegram: 'Ziyodillo_84',
-  whatsapp: '998992002351'
-};
+// Company contact channels, injected by build.py from its CONTACT settings.
+const CONTACT = Object.assign({ telegram: '', instagram: '', whatsapp: '', phone: '', email: '' }, window.SITE_CONTACT || {});
 
 // Fallback official CBU rate (1 Oct 2026); replaced by the live rate when cbu.uz responds.
 let USD_TO_UZS = 11808.76;
@@ -97,7 +95,7 @@ function showConsultForm() {
    Analytics scripts load only after the visitor clicks "Accept".
    With no IDs configured above, nothing loads and no banner shows.
    =================================================================== */
-const CONSENT_KEY = 'mizan-consent';
+const CONSENT_KEY = 'mezon-consent';
 const analyticsEnabled = () => Boolean(ANALYTICS.ga4 || ANALYTICS.yandexMetrica || ANALYTICS.metaPixel);
 let analyticsLoaded = false;
 
@@ -919,9 +917,14 @@ function initLiveChat() {
   const quickChips = document.querySelectorAll('.quick-chip');
   if (!toggleBtn || !chatWindow) return;
 
-  const tgLink = `<a href="https://t.me/${CONTACT.telegram}" target="_blank" rel="noopener" class="chat-link tg">@${CONTACT.telegram}</a>`;
-  const waLink = `<a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener" class="chat-link wa">+998 99 200 23 51</a>`;
-  const igLink = `<a href="https://instagram.com/Ziyodillo_Mirzamoydinov" target="_blank" rel="noopener" class="chat-link ig">@Ziyodillo_Mirzamoydinov</a>`;
+  const tgLink = CONTACT.telegram ? `<a href="https://t.me/${CONTACT.telegram}" target="_blank" rel="noopener" class="chat-link tg">@${CONTACT.telegram}</a>` : '';
+  const waLink = CONTACT.whatsapp ? `<a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener" class="chat-link wa">${t('Message us')}</a>` : '';
+  const igLink = CONTACT.instagram ? `<a href="https://instagram.com/${CONTACT.instagram}" target="_blank" rel="noopener" class="chat-link ig">@${CONTACT.instagram}</a>` : '';
+  const contactLines = [
+    tgLink && `• <strong>Telegram:</strong> ${tgLink}`,
+    waLink && `• <strong>WhatsApp:</strong> ${waLink}`,
+    igLink && `• <strong>Instagram:</strong> ${igLink}`
+  ].filter(Boolean).join('<br>');
 
   function openChat() {
     chatWindow.classList.remove('hidden');
@@ -988,7 +991,7 @@ function initLiveChat() {
       return '💻 ' + t('<strong>IT Park Uzbekistan</strong> grants 0% Corporate Tax, 0% VAT on export services, 0% customs duties on equipment, and a reduced 7.5% employee income tax until 2040. Residents pay 1% of revenue to the IT Park Directorate. We can prepare your business plan and residency application.');
     }
     if (has(q, ['islamic', 'shariah', 'sharia', 'arab', 'gcc', 'sukuk', 'murabaha', 'ислам', 'шариат', 'islom', 'إسلامي', 'الخليج', 'شريعة', 'الشريعة'])) {
-      return '🌙 ' + t('<strong>Mizan Advisory</strong> specializes in Islamic finance advisory for Gulf/Arab investors (UAE, Saudi Arabia, Qatar). We assist with Double Tax Treaty relief, Murabaha structuring, Shariah-compliant joint ventures, and TIFC licensing, where Islamic banking services enjoy 0% corporate tax until 2076.');
+      return '🌙 ' + t('<strong>Mezon Advisory</strong> specializes in Islamic finance advisory for Gulf/Arab investors (UAE, Saudi Arabia, Qatar). We assist with Double Tax Treaty relief, Murabaha structuring, Shariah-compliant joint ventures, and TIFC licensing, where Islamic banking services enjoy 0% corporate tax until 2076.');
     }
     if (has(q, ['register', 'registration', 'formation', 'open company', 'set up', 'setup', 'llc', 'регистрац', 'открыть компан', 'ооо', 'kompaniya', 'ochish', 'تأسيس', 'شركة'])) {
       return '🏢 ' + t('To register a company in Uzbekistan, we usually recommend a <strong>Foreign Enterprise LLC</strong>. Setup takes 5–7 business days and can be handled 100% remotely via Power of Attorney. Would you like us to review your required documents?');
@@ -996,15 +999,14 @@ function initLiveChat() {
     if (has(q, ['audit', 'ifrs', 'nas', 'мсфо', 'аудит', 'mhxs', 'تدقيق'])) {
       return '📑 ' + t('We provide statutory audits, NAS-to-IFRS conversion and internal control diagnostics. Try the free Audit Readiness Diagnostic in our tools section, or request an audit proposal.');
     }
-    if (has(q, ['speak', 'ziyodillo', 'call', 'contact', 'telegram', 'whatsapp', 'phone', 'связ', 'позвон', 'контакт', "bog'lan", 'aloqa', 'تواصل', 'اتصال'])) {
-      return '👤 ' + t('Connect directly with Ziyodillo Mirzamoydinov:') +
-        `<br>• <strong>Telegram:</strong> ${tgLink}<br>• <strong>WhatsApp:</strong> ${waLink}<br>• <strong>Instagram:</strong> ${igLink}`;
+    if (has(q, ['speak', 'advisor', 'call', 'contact', 'telegram', 'whatsapp', 'phone', 'связ', 'консульт', 'позвон', 'контакт', "bog'lan", 'maslahatchi', 'aloqa', 'تواصل', 'اتصال', 'مستشار'])) {
+      return '👤 ' + t('Connect directly with our advisory team:') + '<br>' + contactLines;
     }
     if (has(q, ['tax', 'vat', 'rate', 'cit', 'налог', 'ндс', 'soliq', 'qqs', 'ضرائب', 'ضريبة'])) {
       return '📊 ' + t('Standard Uzbekistan tax rates (2026):<br>• Corporate Income Tax: <strong>15%</strong><br>• VAT: <strong>12%</strong><br>• Employee PIT: <strong>12%</strong><br>• Employer Social Tax: <strong>12%</strong><br>Special regimes: <strong>IT Park</strong> (0% CIT, 7.5% PIT) and <strong>TIFC</strong> (0% CIT on qualifying financial services until 2076).');
     }
-    return t('Thank you for reaching out! Our advisory team will review your message: "{msg}". For an instant reply, message Ziyodillo on Telegram ({tg}) or WhatsApp ({wa}).',
-      { msg: `<em>${escapeHtml(userQuery)}</em>`, tg: tgLink, wa: waLink });
+    return t('Thank you for reaching out! Our advisory team will review your message: "{msg}". For an instant reply, message us directly:',
+      { msg: `<em>${escapeHtml(userQuery)}</em>` }) + '<br>' + contactLines;
   }
 
   function handleQuery(text) {
@@ -1077,7 +1079,7 @@ function initConsultationModal() {
     const serviceLabel = serviceSelect.options[serviceSelect.selectedIndex].text;
 
     lastMessage =
-      t('Hello Ziyodillo! I am requesting a consultation with Mizan Advisory via your website:') + '\n\n' +
+      t('Hello Mezon Advisory! I am requesting a consultation via your website:') + '\n\n' +
       `• ${t('Name')}: ${name}\n` +
       `• ${t('Company')}: ${val('clientCompany')}\n` +
       `• ${t('Email')}: ${val('clientEmail')}\n` +
@@ -1086,7 +1088,7 @@ function initConsultationModal() {
       `• ${t('Notes')}: ${val('clientNotes') || t('Ready to discuss.')}\n` +
       `• ${t('Website language')}: ${document.documentElement.lang.toUpperCase()}`;
 
-    if (waBtn) waBtn.href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(lastMessage)}`;
+    if (waBtn && CONTACT.whatsapp) waBtn.href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(lastMessage)}`;
 
     consultForm.hidden = true;
     if (success) success.hidden = false;

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Mizan Advisory static site builder.
+Mezon Advisory static site builder.
 
 Takes the English source pages (index.html, privacy.html) and produces a
 ready-to-upload website in ./dist with one folder per language:
@@ -19,7 +19,7 @@ Usage:
     python3 build.py --extract    list every translatable English string
     python3 build.py --check      build and fail if any string is untranslated
 
-Edit SITE_URL below once you have your domain, then rebuild.
+Edit SITE_URL and CONTACT below, then rebuild.
 """
 
 import json
@@ -32,7 +32,17 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 # CONFIGURATION
 # ---------------------------------------------------------------------------
-SITE_URL = "https://www.mizanadvisory.com"  # <-- change to your real domain (no trailing slash)
+SITE_URL = "https://www.mezonadvisory.com"  # <-- your domain (no trailing slash)
+
+# Company contact channels. Every link on the site is filled in from here.
+# Leave a value empty ("") to hide that channel everywhere on the site.
+CONTACT = {
+    "telegram": "mezon_advisory",    # Telegram username, without @
+    "instagram": "mezon.advisory",   # Instagram username, without @
+    "whatsapp": "905349864297",      # WhatsApp Business number, digits only (+90 534 986 4297)
+    "phone": "",                     # Phone as displayed, e.g. "+998 90 123 45 67"
+    "email": "",                     # e.g. "info@mezonadvisory.com"
+}
 
 LANGS = {
     "en": {"dir": "ltr", "prefix": "", "og": "en_US"},
@@ -52,14 +62,14 @@ TRANSLATABLE_ATTRS = ("placeholder", "aria-label", "title", "alt", "content")
 
 # Strings that are the same in every language (brands, codes, numbers).
 NO_TRANSLATE = {
-    "MIZAN ADVISORY", "Mizan Advisory", "M", "ZM", "MA", "EN", "RU", "UZ", "العربية",
-    "TIFC", "USD / UZS", "EUR / UZS", "AED / UZS", "RUB / UZS", "—", "|",
-    "Ziyodillo Mirzamoydinov", "LinkedIn", "Instagram", "WhatsApp", "Telegram",
+    "Mezon Advisory", "EN", "RU", "UZ", "العربية",
+    "USD / UZS", "EUR / UZS", "AED / UZS", "RUB / UZS", "—", "|",
+    "Instagram", "WhatsApp", "Telegram",
     "UZS (Uzbek Som)", "$500,000", "25%", "30%", "$50k", "$1M", "$5M", "$10M+",
     "01", "02", "03", "04", "$150M+", "120+", "100%", "0%", "2076", "12+",
     "USD ($) [1 USD ≈ 11,809 UZS]", "contact@gulfcapital.ae",
     "$18,750", "$21,000", "$34,560", "$74,310", "$106,250", "$0", "$0 / year",
-    "15%", "12%", "7.5%", "2040", "Taxable", "IT Park", "IFRS", "$420k+", "$12M", "$45M",
+    "15%", "12%", "7.5%", "2040", "IT Park", "IFRS", "$420k+", "$12M", "$45M",
 }
 
 # ---------------------------------------------------------------------------
@@ -111,7 +121,7 @@ def extract_strings(src):
             continue
         for m in re.finditer(r">([^<>]+)<", chunk):
             text = norm(m.group(1))
-            if text and re.search(r"[A-Za-z]", text):
+            if text and re.search(r"[A-Za-z]", text) and "{{" not in text:
                 found.append(text)
         for m in re.finditer(r"\b(%s)=\"([^\"]*)\"" % "|".join(TRANSLATABLE_ATTRS), chunk):
             attr, val = m.group(1), norm(m.group(2))
@@ -173,6 +183,33 @@ def localize_links(src, lang, page):
     return src
 
 
+def apply_contacts(src):
+    """Fill {{TOKENS}} from CONTACT, hide empty channels, expose CONTACT to app.js."""
+    c = CONTACT
+    tokens = {
+        "{{TELEGRAM}}": c["telegram"],
+        "{{TELEGRAM_URL}}": f"https://t.me/{c['telegram']}" if c["telegram"] else "#",
+        "{{INSTAGRAM}}": c["instagram"],
+        "{{INSTAGRAM_URL}}": f"https://instagram.com/{c['instagram']}" if c["instagram"] else "#",
+        "{{WHATSAPP_URL}}": f"https://wa.me/{c['whatsapp']}" if c["whatsapp"] else "#",
+        "{{PHONE}}": c["phone"],
+        "{{PHONE_URL}}": "tel:" + re.sub(r"[^\d+]", "", c["phone"]) if c["phone"] else "#",
+        "{{EMAIL}}": c["email"],
+    }
+    for k, v in tokens.items():
+        src = src.replace(k, v)
+    same_as = [u for u in (tokens["{{INSTAGRAM_URL}}"], tokens["{{TELEGRAM_URL}}"]) if u != "#"]
+    src = src.replace('"sameAs": "{{SAME_AS}}"', '"sameAs": ' + json.dumps(same_as))
+    hidden = [f"no-{k}" for k in ("telegram", "instagram", "whatsapp", "phone", "email") if not c[k]]
+    if hidden:
+        src = re.sub(r"<html ([^>]*)>", lambda m: f'<html {m.group(1)} class="{" ".join(hidden)}">', src, count=1)
+    public = {k: v for k, v in c.items()}
+    src = src.replace('<script src="/app.js"></script>',
+                      f'<script>window.SITE_CONTACT = {json.dumps(public)};</script>\n  <script src="/app.js"></script>')
+    assert "{{" not in src, "unreplaced token: " + src[src.index("{{"):src.index("{{") + 30]
+    return src
+
+
 def load_dict(lang):
     if lang == "en":
         return {"html": {}, "js": {}}
@@ -203,6 +240,7 @@ def build(check=False):
             out = out.replace('"@type": "ProfessionalService",',
                               f'"@type": "ProfessionalService",\n    "url": "{SITE_URL}/",')
             out = localize_links(out, lang, page)
+            out = apply_contacts(out)
             if lang != "en" and d["js"]:
                 payload = json.dumps(d["js"], ensure_ascii=False).replace("</", "<\\/")
                 out = out.replace('<script src="/app.js"></script>',

@@ -1,5 +1,5 @@
 /* ===================================================================
-   MIZAN ADVISORY | MIRZAMOYDINOV & PARTNERS
+   MEZON ADVISORY
    PREMIER FINANCIAL, AUDIT, TAX & CORPORATE ADVISORY IN UZBEKISTAN
    LIGHT EXECUTIVE DESIGN SYSTEM (GLOBAL & GCC INVESTOR STANDARD)
    =================================================================== */
@@ -1684,7 +1684,7 @@ section {
 }
 
 /* ===================================================================
-   ABOUT ZIYODILLO MIRZAMOYDINOV
+   ABOUT THE FIRM
    =================================================================== */
 .about-section {
   background: #FFFFFF;
@@ -3602,7 +3602,7 @@ section {
   }
 
   body.print-tax-report .tools-section .section-header::after {
-    content: "Prepared with the Mizan Advisory tax calculator. Indicative estimate only, not tax advice. Contact: +998 99 200 23 51 · t.me/Ziyodillo_84";
+    content: "Prepared with the Mezon Advisory tax calculator · mezonadvisory.com. Indicative estimate only, not tax advice.";
     display: block;
     margin-top: 0.5rem;
     font-size: 0.75rem;
@@ -3873,3 +3873,155 @@ a.lang-btn[aria-current="page"] {
 :lang(ru) .nav-new::after { content: "НОВОЕ"; }
 :lang(ar) .nav-new::after { content: "جديد"; }
 :lang(uz) .nav-new::after { content: "YANGI"; }
+
+/* ===================================================================
+   BRAND LOGO (header, footer, chat)
+   =================================================================== */
+.brand-logo-img {
+  display: block;
+  height: 60px;
+  width: auto;
+}
+
+.footer-logo {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.footer-logo img {
+  height: 62px;
+  width: auto;
+}
+
+.footer-logo .brand-sub {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  color: #94A3B8;
+}
+
+.chat-avatar img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .brand-logo-img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-logo-img {
+    height: 44px;
+  }
+}
+
+/* Keep the logo intact and collapse the menu earlier (7 links + 2 buttons need ~1100px) */
+.main-header .brand-logo {
+  flex-shrink: 0;
+}
+
+/* Below 1400px the 7-item menu cannot fit on one line: use the ☰ menu */
+@media (max-width: 1399px) {
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1.5rem 0;
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav-menu.open {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0 1.5rem;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+}
+
+/* Contact channels left empty in build.py are hidden everywhere */
+.no-whatsapp [data-contact="whatsapp"],
+.no-telegram [data-contact="telegram"],
+.no-instagram [data-contact="instagram"],
+.no-phone [data-contact="phone"],
+.no-email [data-contact="email"] {
+  display: none !important;
+}
+
+/* Firm mark in the hero card and About section */
+.exec-avatar .exec-mark {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+.photo-placeholder .about-mark {
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+
+/* ===================================================================
+   HEADER NAVIGATION: one line, even spacing
+   =================================================================== */
+.main-header .nav-container {
+  max-width: 1440px;
+  gap: 2.5rem;
+}
+
+.nav-item {
+  white-space: nowrap;
+}
+
+.nav-item.highlight-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-new::after {
+  top: -0.6rem;
+}
+
+@media (min-width: 1400px) {
+  .nav-menu {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-links {
+    gap: 2rem;
+  }
+
+  .nav-item {
+    font-size: 0.9rem;
+  }
+
+  /* room for the NEW badge so it never touches the next item */
+  .nav-new {
+    margin-inline-end: 1.4rem;
+  }
+}
+
+.nav-item.highlight-link i {
+  font-size: 0.85em;
+  line-height: 1;
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qalam Brand Guide</title>
+<link rel="icon" type="image/svg+xml" href="final/qalam-favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Kufi+Arabic:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0F172A;--gold:#D4AF37;--gold-deep:#A67C1F;--bg:#F8FAFC;--line:#E2E8F0;--muted:#64748B}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--navy);line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header.hero{background:var(--navy);padding:72px 0 60px}
+header.hero img{width:min(460px,100%);height:auto}
+header.hero p{color:#CBD5E1;max-width:640px;margin-top:26px}
+section{padding:48px 0;border-bottom:1px solid var(--line)}
+h2{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+h3{font-size:1.25rem;font-weight:800;margin-bottom:8px}
+p{color:#334155}
+.story{display:grid;grid-template-columns:220px 1fr;gap:32px;align-items:center}
+.story img{width:220px;height:220px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tile{border:1px solid var(--line);border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;min-height:210px;background:#fff}
+.tile.dark{background:var(--navy);border-color:var(--navy)}
+.tile img{max-width:100%;max-height:130px}
+.tile.tall img{max-height:200px}
+.tile span{font-size:.75rem;color:var(--muted);font-weight:600;text-align:center}
+.tile.dark span{color:#94A3B8}
+.sizes{display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+.sizes figure{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sizes figcaption{font-size:.72rem;color:var(--muted)}
+.swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sw{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.sw div{height:90px}
+.sw p{padding:10px 12px;font-size:.8rem;line-height:1.4}
+.sw b{display:block;color:var(--navy)}
+.type{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.type div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.type .sample{font-size:2rem;line-height:1.2;margin-bottom:6px}
+.type small{color:var(--muted)}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rules ul{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px 36px}
+.rules li{margin:4px 0;font-size:.9rem}
+.do li::marker{color:#059669}.dont li::marker{color:#DC2626}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:.88rem}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--bg);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td code{font-size:.8rem;background:var(--bg);padding:1px 6px;border-radius:6px;word-break:break-all}
+[lang=ar]{font-family:'Noto Kufi Arabic',sans-serif}
+@media (max-width:720px){.story,.grid,.grid3,.rules{grid-template-columns:1fr}.swatches{grid-template-columns:repeat(2,minmax(0,1fr))}.type{grid-template-columns:1fr}.story img{width:150px;height:150px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img src="final/qalam-logo-white.svg" alt="Qalam Advisory">
+    <p>Brand guide for Qalam Advisory (legal entity: Mirzamoydinov &amp; Partners), Tashkent. Tax, audit, company formation and Tashkent International Financial Centre advisory for investors from the CIS, Central Asia and the Gulf.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>The idea</h2>
+    <div class="story">
+      <img src="final/qalam-icon.svg" alt="Qalam monogram">
+      <div>
+        <h3>One stroke of the pen</h3>
+        <p><b>Qalam</b> (قلم · Калам) means "pen" in Arabic, Persian and Uzbek: the instrument of contracts, accounts and knowledge.</p>
+        <p style="margin-top:10px">Our <b>Q</b> is drawn the way a real qalam writes, with the thick-and-thin contrast of a broad nib. Its tail is a single pen stroke that ends in the <b><i>nuqta</i></b>, the diamond-shaped dot calligraphers use as the unit for measuring every letter. The nuqta stands for precision: the measure behind every tax position, audit opinion and structure we deliver.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Primary logo</h2>
+    <div class="grid">
+      <div class="tile"><img src="final/qalam-logo.svg" alt=""><span>Light backgrounds: website, letterheads, documents</span></div>
+      <div class="tile dark"><img src="final/qalam-logo-white.svg" alt=""><span>Dark backgrounds: presentations, signage, social</span></div>
+      <div class="tile tall"><img src="final/qalam-logo-arabic.svg" alt=""><span>Bilingual Arabic: Gulf materials, Arabic website</span></div>
+      <div class="tile dark tall"><img src="final/qalam-logo-arabic-white.svg" alt=""><span>Bilingual Arabic, reversed</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Monogram and seal</h2>
+    <div class="grid3">
+      <div class="tile"><img src="final/qalam-monogram.svg" alt="" style="height:120px"><span>Monogram: icon, favicon, profile picture</span></div>
+      <div class="tile tall"><img src="final/qalam-seal.svg" alt=""><span>Seal: audit reports, certificates, stamps</span></div>
+      <div class="tile dark tall"><img src="final/qalam-seal-gold.svg" alt=""><span>Seal, gold on navy</span></div>
+    </div>
+    <div class="sizes" style="margin-top:16px">
+      <figure><img src="final/png/qalam-profile-picture-1080.png" width="120" height="120" style="border-radius:50%" alt=""><figcaption>Instagram / Telegram / WhatsApp</figcaption></figure>
+      <figure><img src="final/qalam-icon.svg" width="96" height="96" alt=""><figcaption>App icon</figcaption></figure>
+      <figure><img src="final/qalam-favicon.svg" width="48" height="48" alt=""><figcaption>48 px</figcaption></figure>
+      <figure><img src="final/qalam-favicon.svg" width="32" height="32" alt=""><figcaption>Favicon 32</figcaption></figure>
+      <figure><img src="final/qalam-favicon.svg" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Colours</h2>
+    <div class="swatches">
+      <div class="sw"><div style="background:#0F172A"></div><p><b>Qalam Navy</b>#0F172A · RGB 15 23 42<br>Backgrounds, text</p></div>
+      <div class="sw"><div style="background:#D4AF37"></div><p><b>Nuqta Gold</b>#D4AF37 · RGB 212 175 55<br>Accents on dark, the nuqta</p></div>
+      <div class="sw"><div style="background:#A67C1F"></div><p><b>Deep Gold</b>#A67C1F · RGB 166 124 31<br>Gold text on light backgrounds</p></div>
+      <div class="sw"><div style="background:#F8FAFC"></div><p><b>Paper</b>#F8FAFC · RGB 248 250 252<br>Light backgrounds</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Typography</h2>
+    <div class="type">
+      <div><div class="sample" style="font-family:Cinzel;font-weight:700">QALAM</div><b>Cinzel Bold</b><br><small>Large headings only. The logo itself is custom-drawn: never retype it.</small></div>
+      <div><div class="sample" style="font-weight:800">Advisory</div><b>Plus Jakarta Sans</b><br><small>All body text and UI (Latin and Uzbek). For Cyrillic text use Inter or a system sans.</small></div>
+      <div><div class="sample" lang="ar" dir="rtl">قلم</div><b>Noto Kufi Arabic</b><br><small>All Arabic text.</small></div>
+    </div>
+    <p style="margin-top:12px;font-size:.9rem">The logo always keeps the Latin "QALAM", including on Russian and Uzbek materials. In running Russian text: <b>Qalam Advisory</b> or «Калам».</p>
+  </section>
+
+  <section>
+    <h2>Usage rules</h2>
+    <div class="rules">
+      <ul class="do">
+        <li>Clear space around the logo: at least the height of the "A" in QALAM on every side.</li>
+        <li>Minimum width of the primary logo: 120 px on screen, 30 mm in print.</li>
+        <li>Navy logo on light backgrounds; white-and-gold logo on navy or dark photos.</li>
+        <li>Use the seal as a secondary emblem, never as a replacement for the logo.</li>
+      </ul>
+      <ul class="dont">
+        <li>Don't recolour, stretch, rotate, outline or add shadows.</li>
+        <li>Don't remove the gold nuqta or change its colour.</li>
+        <li>Don't retype the name in a font. Always use the supplied files.</li>
+        <li>Don't use the seal below 120 px; the lettering becomes unreadable.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Files (brand/qalam/final)</h2>
+    <table>
+      <tr><th>Use</th><th>File</th></tr>
+      <tr><td>Website, letterheads, presentations</td><td><code>qalam-logo.svg</code> · <code>qalam-logo-white.svg</code> (PNG in <code>png/</code>)</td></tr>
+      <tr><td>Gulf and Arabic materials</td><td><code>qalam-logo-arabic.svg</code> · <code>qalam-logo-arabic-white.svg</code></td></tr>
+      <tr><td>Instagram, Telegram, WhatsApp Business, LinkedIn photo</td><td><code>png/qalam-profile-picture-1080.png</code></td></tr>
+      <tr><td>Link previews (WhatsApp, Telegram, LinkedIn, Facebook)</td><td><code>png/qalam-social-share-1200x630.png</code></td></tr>
+      <tr><td>Favicon and app icons</td><td><code>qalam-favicon.svg</code>, <code>png/qalam-favicon-32.png</code>, <code>png/qalam-apple-touch-icon-180.png</code>, <code>png/qalam-icon-192.png</code>, <code>png/qalam-icon-512.png</code></td></tr>
+      <tr><td>Stamp, certificates, report covers</td><td><code>qalam-seal.svg</code> · <code>qalam-seal-gold.svg</code></td></tr>
+      <tr><td>Printing (business cards, signage, embossing)</td><td>Send the SVG files. All lettering is converted to shapes, so no fonts are needed.</td></tr>
+    </table>
+  </section>
+
+</main>
+</body>
+</html>

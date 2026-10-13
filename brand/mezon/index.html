@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mezon Brand Guide</title>
+<link rel="icon" type="image/svg+xml" href="final/mezon-favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Kufi+Arabic:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0F172A;--gold:#C9A227;--line:#E2E8F0;--muted:#64748B;--bg:#F8FAFC}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--navy);line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header.hero{background:var(--navy);padding:72px 0 60px;position:relative;overflow:hidden}
+header.hero::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,255,255,.08)}
+header.hero .wrap{position:relative;z-index:1}
+header.hero img{width:min(440px,100%);height:auto}
+header.hero p{color:#CBD5E1;max-width:640px;margin-top:26px}
+section{padding:48px 0;border-bottom:1px solid var(--line)}
+h2{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+h3{font-size:1.25rem;font-weight:800;margin-bottom:8px}
+p{color:#334155}
+.story{display:grid;grid-template-columns:220px 1fr;gap:32px;align-items:center}
+.story img{width:220px;height:220px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tile{border:1px solid var(--line);border-radius:16px;padding:34px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;min-height:200px;background:#fff}
+.tile.dark{background:var(--navy);border-color:var(--navy)}
+.tile img{max-width:100%;max-height:120px}
+.tile span{font-size:.75rem;color:var(--muted);font-weight:600;text-align:center}
+.tile.dark span{color:#94A3B8}
+.sizes{display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:16px}
+.sizes figure{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sizes figcaption{font-size:.72rem;color:var(--muted)}
+.swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sw{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.sw div{height:90px}
+.sw p{padding:10px 12px;font-size:.8rem;line-height:1.4}
+.sw b{display:block;color:var(--navy)}
+.type{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.type div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.type .sample{font-size:2rem;line-height:1.2;margin-bottom:6px}
+.type small{color:var(--muted)}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rules ul{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px 36px}
+.rules li{margin:4px 0;font-size:.9rem}
+.do li::marker{color:#059669}.dont li::marker{color:#DC2626}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:.88rem}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--bg);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td code{font-size:.8rem;background:var(--bg);padding:1px 6px;border-radius:6px;word-break:break-all}
+[lang=ar]{font-family:'Noto Kufi Arabic',sans-serif}
+@media (max-width:720px){.story,.grid,.grid3,.rules{grid-template-columns:1fr}.swatches{grid-template-columns:repeat(2,minmax(0,1fr))}.type{grid-template-columns:1fr}.story img{width:150px;height:150px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img src="final/mezon-logo-white.svg" alt="Mezon Advisory">
+    <p>Brand guide for Mezon Advisory (legal entity: Mirzamoydinov &amp; Partners), Tashkent. Tax, audit, company formation and Tashkent International Financial Centre advisory for investors from the CIS, Central Asia and the Gulf.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>The idea</h2>
+    <div class="story">
+      <img src="final/mezon-icon.svg" alt="Mezon mark">
+      <div>
+        <h3>Equilibrium</h3>
+        <p><b>Mezon</b> (Мезон · ميزان) means balance, standard and measure in Uzbek, from the Arabic <i>mīzān</i>.</p>
+        <p style="margin-top:10px">The mark is a circle divided into two exactly equal halves resting on the line of balance: navy above, gold below. It stands for the two sides every engagement must hold in equilibrium: investor and state, ambition and compliance, profit and protection. In the name, the mark takes the place of the O, so the symbol and the word are one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Logo</h2>
+    <div class="grid">
+      <div class="tile"><img src="final/mezon-logo.svg" alt=""><span>Primary: light backgrounds</span></div>
+      <div class="tile dark"><img src="final/mezon-logo-white.svg" alt=""><span>Primary: dark backgrounds</span></div>
+      <div class="tile"><img src="final/mezon-logo-arabic.svg" alt=""><span>Bilingual Arabic: Gulf materials, Arabic website</span></div>
+      <div class="tile dark"><img src="final/mezon-logo-arabic-white.svg" alt=""><span>Bilingual Arabic, reversed</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Mark and icons</h2>
+    <div class="grid3">
+      <div class="tile"><img src="final/mezon-mark.svg" alt="" style="height:110px"><span>Mark on light</span></div>
+      <div class="tile dark"><img src="final/mezon-mark-white.svg" alt="" style="height:110px"><span>Mark on dark</span></div>
+      <div class="tile"><img src="final/mezon-mark-black.svg" alt="" style="height:110px"><span>One colour (stamps, embossing, fax)</span></div>
+    </div>
+    <div class="sizes">
+      <figure><img src="final/png/mezon-profile-picture-1080.png" width="120" height="120" style="border-radius:50%" alt=""><figcaption>Instagram / Telegram / WhatsApp</figcaption></figure>
+      <figure><img src="final/mezon-icon.svg" width="96" height="96" alt=""><figcaption>App icon</figcaption></figure>
+      <figure><img src="final/mezon-favicon.svg" width="48" height="48" alt=""><figcaption>48 px</figcaption></figure>
+      <figure><img src="final/mezon-favicon.svg" width="32" height="32" alt=""><figcaption>Favicon 32</figcaption></figure>
+      <figure><img src="final/mezon-favicon.svg" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+    </div>
+    <p style="margin-top:12px;font-size:.9rem">Below 48 px the side bars of the balance line are dropped so the circle stays crisp.</p>
+  </section>
+
+  <section>
+    <h2>Colours</h2>
+    <div class="swatches">
+      <div class="sw"><div style="background:#0F172A"></div><p><b>Mezon Navy</b>#0F172A · RGB 15 23 42<br>Upper half, text, backgrounds</p></div>
+      <div class="sw"><div style="background:#C9A227"></div><p><b>Balance Gold</b>#C9A227 · RGB 201 162 39<br>Lower half of the mark</p></div>
+      <div class="sw"><div style="background:#A67C1F"></div><p><b>Deep Gold</b>#A67C1F · RGB 166 124 31<br>Gold text on light backgrounds</p></div>
+      <div class="sw"><div style="background:#D4AF37"></div><p><b>Bright Gold</b>#D4AF37 · RGB 212 175 55<br>Gold on dark backgrounds</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Typography</h2>
+    <div class="type">
+      <div><div class="sample" style="font-family:Outfit;font-weight:500;letter-spacing:.12em">MEZON</div><b>Outfit Medium</b><br><small>Logo letters and large headings. The logo itself is custom: never retype it.</small></div>
+      <div><div class="sample" style="font-weight:800">Advisory</div><b>Plus Jakarta Sans</b><br><small>Body text and UI (Latin and Uzbek). For Cyrillic text use Inter or a system sans.</small></div>
+      <div><div class="sample" lang="ar" dir="rtl">ميزان</div><b>Noto Kufi Arabic</b><br><small>All Arabic text.</small></div>
+    </div>
+    <p style="margin-top:12px;font-size:.9rem">The logo always keeps the Latin "MEZON". In running Russian text write <b>Mezon Advisory</b> or «Мезон»; in Arabic, «ميزان للاستشارات».</p>
+  </section>
+
+  <section>
+    <h2>Usage rules</h2>
+    <div class="rules">
+      <ul class="do">
+        <li>Clear space around the logo: at least the height of the circle on every side.</li>
+        <li>Minimum width of the logo: 110 px on screen, 28 mm in print.</li>
+        <li>Navy logo on light backgrounds; white-and-gold logo on navy or dark photos.</li>
+        <li>Keep the two halves exactly equal. Balance is the whole idea.</li>
+      </ul>
+      <ul class="dont">
+        <li>Don't recolour the halves, swap them, or rotate the mark.</li>
+        <li>Don't close the gap between the halves.</li>
+        <li>Don't retype MEZON with a normal O.</li>
+        <li>Don't add shadows, outlines or gradients.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Files (brand/mezon/final)</h2>
+    <table>
+      <tr><th>Use</th><th>File</th></tr>
+      <tr><td>Website, letterheads, presentations</td><td><code>mezon-logo.svg</code> · <code>mezon-logo-white.svg</code> (PNG in <code>png/</code>)</td></tr>
+      <tr><td>Gulf and Arabic materials</td><td><code>mezon-logo-arabic.svg</code> · <code>mezon-logo-arabic-white.svg</code></td></tr>
+      <tr><td>Instagram, Telegram, WhatsApp Business, LinkedIn photo</td><td><code>png/mezon-profile-picture-1080.png</code></td></tr>
+      <tr><td>Link previews (WhatsApp, Telegram, LinkedIn, Facebook)</td><td><code>png/mezon-social-share-1200x630.png</code></td></tr>
+      <tr><td>Favicon and app icons</td><td><code>mezon-favicon.svg</code>, <code>png/mezon-favicon-32.png</code>, <code>png/mezon-apple-touch-icon-180.png</code>, <code>png/mezon-icon-192.png</code>, <code>png/mezon-icon-512.png</code></td></tr>
+      <tr><td>Printing (business cards, signage, embossing)</td><td>Send the SVG files. All lettering is converted to shapes, so no fonts are needed.</td></tr>
+      <tr><td>Rebuilding or editing the logo</td><td><code>python3 brand/mezon/make_final.py</code> (needs fonttools and uharfbuzz; fonts are in <code>brand/fonts</code>)</td></tr>
+    </table>
+  </section>
+
+</main>
+</body>
+</html>
