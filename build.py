@@ -32,7 +32,7 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 # CONFIGURATION
 # ---------------------------------------------------------------------------
-SITE_URL = "https://www.mezonadvisory.com"  # <-- your domain (no trailing slash)
+SITE_URL = "https://mezonadvisory.com"  # <-- your domain (no trailing slash)
 
 # Company contact channels. Every link on the site is filled in from here.
 # Leave a value empty ("") to hide that channel everywhere on the site.
@@ -271,6 +271,8 @@ def build(check=False):
             shutil.copy2(p, DIST / item)
 
     write_sitemap()
+    # IndexNow key (Bing, Yandex, Seznam, Naver): lets us notify search engines of updates instantly.
+    (DIST / "67d621c4365af72bae46514f55e7c441.txt").write_text("67d621c4365af72bae46514f55e7c441", encoding="utf-8")
     (DIST / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
     (DIST / "_headers").write_text(HEADERS, encoding="utf-8")

@@ -23,7 +23,7 @@ Live addresses after deployment:
 
 1. **Buy your domain.** Then open `build.py` and change this line to your real domain:
    ```python
-   SITE_URL = "https://www.mezonadvisory.com"
+   SITE_URL = "https://mezonadvisory.com"
    ```
 2. **Rebuild:**
    ```bash
