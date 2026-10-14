@@ -11,7 +11,7 @@
    0. SITE CONFIGURATION — paste your IDs here after creating accounts
    =================================================================== */
 const ANALYTICS = {
-  ga4: '',            // Google Analytics 4 Measurement ID, e.g. 'G-XXXXXXXXXX'
+  ga4: 'G-3M3CHPR8TJ', // Google Analytics 4 Measurement ID, e.g. 'G-XXXXXXXXXX'
   yandexMetrica: '',  // Yandex Metrica counter number, e.g. '98765432'
   metaPixel: ''       // Meta (Instagram/Facebook) Pixel ID, e.g. '1234567890'
 };
