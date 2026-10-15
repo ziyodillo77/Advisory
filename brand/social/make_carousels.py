@@ -285,7 +285,7 @@ def cta_slide(F, ui):
         out.append(text(W / 2, y, line, "MzReg", 34, SOFT, "middle"))
         y += 48
     y += 30
-    for label in ("Telegram  @mezon_advisory", "WhatsApp  +90 534 986 42 97"):
+    for label in ("Telegram  @mezon_advisory", "Instagram  @mezon.advisory"):
         out.append(text(W / 2, y, label, "MzBold", 38, WHITE, "middle"))
         y += 60
     out.append(text(W / 2, 1160, ui["save"], "MzSemi", 30, MUTED, "middle"))
