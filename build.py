@@ -52,6 +52,15 @@ LANGS = {
 }
 
 PAGES = ["index.html", "privacy.html"]
+
+# Investor guides: guides/<slug>/<lang>.html, each starting with a metadata comment
+# (title, description, tag, minutes, published, updated). Listed in display order.
+GUIDES = [
+    "register-company-uzbekistan",
+    "tifc-tashkent-international-financial-centre",
+    "uzbekistan-taxes-foreign-investors",
+]
+GUIDE_TEMPLATE = "guide.html"
 STATIC = ["styles.css", "app.js", "404.html", "site.webmanifest", "assets"]
 
 ROOT = Path(__file__).resolve().parent
@@ -69,7 +78,7 @@ NO_TRANSLATE = {
     "01", "02", "03", "04", "$150M+", "120+", "100%", "0%", "2076", "12+",
     "USD ($) [1 USD ≈ 11,809 UZS]", "contact@gulfcapital.ae",
     "$18,750", "$21,000", "$34,560", "$74,310", "$106,250", "$0", "$0 / year",
-    "15%", "12%", "7.5%", "2040", "IT Park", "IFRS", "$420k+", "$12M", "$45M",
+    "15%", "12%", "7.5%", "2040", "IT Park", "IT Park:", "IFRS", "$420k+", "$12M", "$45M",
 }
 
 # ---------------------------------------------------------------------------
@@ -172,6 +181,7 @@ def localize_links(src, lang, page):
     # Internal page links (not the language switcher, which carries hreflang)
     src = re.sub(r'href="/privacy\.html"', f'href="/{prefix}privacy.html"', src)
     src = re.sub(r'href="/"(?!\s+hreflang)', f'href="/{prefix}"', src)
+    src = re.sub(r'href="/(guides/|#)', lambda m: f'href="/{prefix}{m.group(1)}', src)
 
     # Language switcher: point each language at the same page, mark current
     def lang_link(m):
@@ -219,6 +229,94 @@ def load_dict(lang):
 
 
 # ---------------------------------------------------------------------------
+# GUIDES
+# ---------------------------------------------------------------------------
+def esc(s):
+    return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def load_guide(slug, lang):
+    """Returns (metadata dict, body html) from guides/<slug>/<lang>.html."""
+    raw = (ROOT / "guides" / slug / f"{lang}.html").read_text(encoding="utf-8")
+    m = re.match(r"\s*<!--(.*?)-->\s*", raw, re.S)
+    meta = dict(line.split(":", 1) for line in m.group(1).strip().splitlines())
+    meta = {k.strip(): v.strip() for k, v in meta.items()}
+    return meta, raw[m.end():]
+
+
+def guide_page(slug):
+    return f"guides/{slug}/"
+
+
+def guide_card(slug, lang):
+    meta, _ = load_guide(slug, lang)
+    return (f'<a class="guide-card" href="/guides/{slug}/">'
+            f'<span class="guide-tag">{meta["tag"]}</span>'
+            f'<h3>{meta["title"]}</h3><p>{meta["description"]}</p>'
+            f'<span class="guide-more"><span>Read guide</span> <i class="fa-solid fa-arrow-right"></i></span></a>')
+
+
+def guide_cards(lang):
+    return '<div class="guide-grid">' + "".join(guide_card(s, lang) for s in GUIDES) + "</div>"
+
+
+def json_ld(data):
+    return ('<script type="application/ld+json">' +
+            json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>")
+
+
+def render_guide_source(page, lang):
+    """English-chrome source for a guide page or the guides index, with localized content."""
+    tpl = (ROOT / GUIDE_TEMPLATE).read_text(encoding="utf-8")
+    home = f"{SITE_URL}/{LANGS[lang]['prefix']}"
+    index_name = load_dict(lang)["html"].get("Investor Guides", "Investor Guides")
+    if page == "guides/":
+        title = "Investor Guides to Uzbekistan"
+        desc = ("Practical guides for foreign investors: company registration, taxes and the "
+                "Tashkent International Financial Centre (TIFC).")
+        crumbs = '<span aria-current="page">Investor Guides</span>'
+        body = ('      <h1>Investor Guides to Uzbekistan</h1>\n'
+                '      <p class="guide-lead">Clear, up-to-date answers to the questions foreign investors ask us most.</p>\n'
+                '      ' + guide_cards(lang))
+        ld = {"@context": "https://schema.org", "@type": "CollectionPage", "url": page_url(lang, page),
+              "inLanguage": lang, "isPartOf": {"@type": "WebSite", "name": "Mezon Advisory", "url": home}}
+        og = "website"
+    else:
+        slug = page.split("/")[1]
+        meta, article = load_guide(slug, lang)
+        title, desc = meta["title"], meta["description"]
+        crumbs = (f'<a href="/guides/">Investor Guides</a> <span aria-hidden="true">›</span> '
+                  f'<span aria-current="page">{esc(title)}</span>')
+        d = meta["updated"].split("-")
+        body = (f'      <article class="guide-article">\n      <span class="guide-tag">{meta["tag"]}</span>\n'
+                f'      <h1>{title}</h1>\n'
+                f'      <p class="legal-updated"><span>Updated</span> <time datetime="{meta["updated"]}">'
+                f'{d[2]}.{d[1]}.{d[0]}</time> · <span>{meta["minutes"]}</span> <span>min read</span></p>\n'
+                f'{article}\n      </article>')
+        org = {"@type": "Organization", "name": "Mezon Advisory", "url": f"{SITE_URL}/",
+               "logo": f"{SITE_URL}/assets/icon-512.png"}
+        ld = [{"@context": "https://schema.org", "@type": "Article", "headline": title, "description": desc,
+               "inLanguage": lang, "datePublished": meta["published"], "dateModified": meta["updated"],
+               "image": f"{SITE_URL}/assets/og-image.png", "author": org, "publisher": org,
+               "mainEntityOfPage": page_url(lang, page)},
+              {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+                  {"@type": "ListItem", "position": 1, "name": "Mezon Advisory", "item": home},
+                  {"@type": "ListItem", "position": 2, "name": index_name, "item": page_url(lang, "guides/")},
+                  {"@type": "ListItem", "position": 3, "name": title, "item": page_url(lang, page)}]}]
+        og = "article"
+    return (tpl.replace("__G_TITLE__", esc(title)).replace("__G_DESC__", esc(desc))
+               .replace("__G_OGTYPE__", og).replace("__G_JSONLD__", json_ld(ld))
+               .replace("__G_CRUMBS__", crumbs).replace("__G_BODY__", body))
+
+
+def render_source(page, lang):
+    if page.startswith("guides/"):
+        return render_guide_source(page, lang)
+    src = (ROOT / page).read_text(encoding="utf-8")
+    return src.replace("<!--GUIDE-CARDS-->", guide_cards(lang))
+
+
+# ---------------------------------------------------------------------------
 # BUILD
 # ---------------------------------------------------------------------------
 def build(check=False):
@@ -230,9 +328,9 @@ def build(check=False):
     for lang, cfg in LANGS.items():
         d = load_dict(lang)
         used = set()
-        for page in PAGES:
-            src = (ROOT / page).read_text(encoding="utf-8")
-            english = extract_strings(src)
+        for page in all_pages():
+            src = render_source(page, lang)
+            english = extract_strings(render_source(page, "en"))
 
             out = translate_html(src, d["html"], used) if lang != "en" else src
             out = re.sub(r'<html lang="en">', f'<html lang="{lang}" dir="{cfg["dir"]}">', out, count=1)
@@ -253,7 +351,7 @@ def build(check=False):
                 for s in sorted(remaining):
                     problems.append(f"[{lang}] {page}: {s}")
 
-            target = DIST / cfg["prefix"] / page
+            target = DIST / cfg["prefix"] / (page + "index.html" if page.endswith("/") else page)
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(out, encoding="utf-8")
 
@@ -282,7 +380,7 @@ def build(check=False):
                       for proto in ("https", "http"))
     (DIST / "_redirects").write_text(aliases + "/en/*  /:splat  301\n", encoding="utf-8")
 
-    print(f"Built {len(LANGS)} languages x {len(PAGES)} pages into {DIST}")
+    print(f"Built {len(LANGS)} languages x {len(all_pages())} pages into {DIST}")
     if problems:
         print(f"\n{len(problems)} untranslated string(s):")
         for p in problems:
@@ -293,15 +391,22 @@ def build(check=False):
         print("All visible strings translated.")
 
 
+def all_pages():
+    return PAGES + ["guides/"] + [guide_page(slug) for slug in GUIDES]
+
+
+SITEMAP_PRIORITY = {"index.html": "1.0", "privacy.html": "0.3", "guides/": "0.7"}
+
+
 def write_sitemap():
     today = date.today().isoformat()
     rows = []
-    for page in PAGES:
+    for page in all_pages():
         for lang in LANGS:
             alts = "\n".join(
                 f'    <xhtml:link rel="alternate" hreflang="{c}" href="{page_url(c, page)}"/>' for c in LANGS)
             alts += f'\n    <xhtml:link rel="alternate" hreflang="x-default" href="{page_url("en", page)}"/>'
-            priority = "1.0" if page == "index.html" else "0.3"
+            priority = SITEMAP_PRIORITY.get(page, "0.8")
             rows.append(
                 f"  <url>\n    <loc>{page_url(lang, page)}</loc>\n    <lastmod>{today}</lastmod>\n"
                 f"    <priority>{priority}</priority>\n{alts}\n  </url>")
@@ -334,8 +439,7 @@ HEADERS = """/*
 
 if __name__ == "__main__":
     if "--extract" in sys.argv:
-        for page in PAGES:
-            src = (ROOT / page).read_text(encoding="utf-8")
-            print(json.dumps({page: extract_strings(src)}, ensure_ascii=False, indent=1))
+        for page in all_pages():
+            print(json.dumps({page: extract_strings(render_source(page, "en"))}, ensure_ascii=False, indent=1))
     else:
         build(check="--check" in sys.argv)

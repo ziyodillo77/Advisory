@@ -4025,3 +4025,253 @@ a.lang-btn[aria-current="page"] {
   font-size: 0.85em;
   line-height: 1;
 }
+
+/* ===================================================================
+   INVESTOR GUIDES: home-page cards, guides index and article pages
+   =================================================================== */
+.guides-section {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.guide-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: var(--text-main);
+  text-decoration: none;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-fast);
+}
+
+.guide-card:hover {
+  border-color: var(--accent-gold-light);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.guide-card h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.guide-card p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.guide-tag {
+  align-self: flex-start;
+  display: inline-block;
+  background: var(--accent-gold-bg);
+  color: #854D0E;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-full);
+}
+
+.guide-more {
+  color: var(--primary-blue);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+[dir="rtl"] .guide-more .fa-arrow-right,
+[dir="rtl"] .guides-all .fa-arrow-right {
+  transform: scaleX(-1);
+}
+
+.guides-all {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Guides index and article pages (built on .legal-page) */
+.guide-page .container {
+  max-width: 860px;
+}
+
+.guide-page .guide-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.guide-page .guide-card,
+.guide-page .guide-card:hover {
+  text-decoration: none;
+}
+
+.breadcrumbs {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+}
+
+.legal-page .breadcrumbs a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.legal-page .breadcrumbs a:hover {
+  color: var(--primary-blue);
+}
+
+.guide-lead {
+  font-size: 1.05rem !important;
+}
+
+.guide-article .guide-tag {
+  margin-bottom: 0.9rem;
+}
+
+.guide-article h1 {
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  line-height: 1.25;
+}
+
+.guide-article h2 {
+  font-size: 1.35rem;
+  margin-top: 2.5rem;
+}
+
+.guide-article h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 1.5rem 0 0.4rem;
+}
+
+.guide-article p,
+.guide-article li {
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 0.8rem;
+}
+
+.guide-article ol {
+  padding-inline-start: 1.4rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.guide-article li {
+  margin-bottom: 0.45rem;
+}
+
+.guide-article .guide-summary {
+  background: var(--bg-card-accent);
+  border-inline-start: 4px solid var(--primary-blue);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.4rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.guide-article .guide-summary ul {
+  margin: 0;
+}
+
+.guide-article .guide-note {
+  background: var(--accent-gold-bg);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+}
+
+.guide-article .table-scroll {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+}
+
+.guide-article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+  background: #FFFFFF;
+}
+
+.guide-article th,
+.guide-article td {
+  border: 1px solid var(--border-subtle);
+  padding: 0.65rem 0.85rem;
+  text-align: start;
+  vertical-align: top;
+  color: var(--text-secondary);
+}
+
+.guide-article thead th {
+  background: var(--bg-secondary);
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.guide-cta {
+  margin-top: 3rem;
+  background: #0F172A;
+  color: #FFFFFF;
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+}
+
+.legal-page .guide-cta h2 {
+  color: #FFFFFF;
+  margin-top: 0;
+  font-size: 1.35rem;
+}
+
+.legal-page .guide-cta p {
+  color: #CBD5E1;
+}
+
+.guide-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.legal-page .guide-cta-actions a {
+  text-decoration: none;
+}
+
+.btn-whatsapp,
+.btn-telegram {
+  color: #FFFFFF !important;
+  border: none;
+}
+
+.btn-whatsapp { background: var(--whatsapp-color); }
+.btn-telegram { background: var(--telegram-color); }
+.btn-whatsapp:hover,
+.btn-telegram:hover { filter: brightness(1.08); }
+
+.guide-disclaimer {
+  margin-top: 1.5rem;
+  font-size: 0.82rem !important;
+  color: var(--text-muted) !important;
+}
+
+@media (max-width: 900px) {
+  .guide-grid,
+  .guide-page .guide-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .guide-cta { padding: 1.5rem; }
+  .guide-cta-actions .btn { width: 100%; justify-content: center; }
+}

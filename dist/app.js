@@ -25,6 +25,8 @@ let USD_TO_UZS = 11808.76;
 document.addEventListener('DOMContentLoaded', () => {
   initConsentAndAnalytics();
   initLeadTracking();
+  // Everything below exists only on the home page (guide and legal pages stop here).
+  if (!document.getElementById('hero')) return;
   initTaxCalculator();
   initFormationEstimator();
   initAuditDiagnostic();
