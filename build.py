@@ -53,13 +53,16 @@ LANGS = {
 
 PAGES = ["index.html", "privacy.html"]
 
-# Investor guides: guides/<slug>/<lang>.html, each starting with a metadata comment
-# (title, description, tag, minutes, published, updated). Listed in display order.
-GUIDES = [
+# Investor guides: every folder guides/<slug>/ with en/ru/ar/uz .html files, each starting with a
+# metadata comment (title, description, tag, minutes, published, updated). New guides are picked up
+# automatically, newest first. The home page shows the HOME_GUIDES newest; /guides/ lists them all.
+# Guides published on the same day keep this order:
+GUIDE_ORDER = [
     "register-company-uzbekistan",
     "tifc-tashkent-international-financial-centre",
     "uzbekistan-taxes-foreign-investors",
 ]
+HOME_GUIDES = 3
 GUIDE_TEMPLATE = "guide.html"
 STATIC = ["styles.css", "app.js", "404.html", "site.webmanifest", "assets"]
 
@@ -256,8 +259,16 @@ def guide_card(slug, lang):
             f'<span class="guide-more"><span>Read guide</span> <i class="fa-solid fa-arrow-right"></i></span></a>')
 
 
-def guide_cards(lang):
-    return '<div class="guide-grid">' + "".join(guide_card(s, lang) for s in GUIDES) + "</div>"
+def all_guides():
+    """Slugs of every guide folder, newest first."""
+    slugs = [p.name for p in sorted((ROOT / "guides").iterdir()) if (p / "en.html").exists()]
+    rank = {slug: i for i, slug in enumerate(GUIDE_ORDER)}
+    published = {slug: load_guide(slug, "en")[0]["published"] for slug in slugs}
+    return sorted(slugs, key=lambda s: (-int(published[s].replace("-", "")), rank.get(s, len(rank)), s))
+
+
+def guide_cards(lang, limit=None):
+    return '<div class="guide-grid">' + "".join(guide_card(s, lang) for s in all_guides()[:limit]) + "</div>"
 
 
 def json_ld(data):
@@ -313,7 +324,7 @@ def render_source(page, lang):
     if page.startswith("guides/"):
         return render_guide_source(page, lang)
     src = (ROOT / page).read_text(encoding="utf-8")
-    return src.replace("<!--GUIDE-CARDS-->", guide_cards(lang))
+    return src.replace("<!--GUIDE-CARDS-->", guide_cards(lang, HOME_GUIDES))
 
 
 # ---------------------------------------------------------------------------
@@ -392,7 +403,7 @@ def build(check=False):
 
 
 def all_pages():
-    return PAGES + ["guides/"] + [guide_page(slug) for slug in GUIDES]
+    return PAGES + ["guides/"] + [guide_page(slug) for slug in all_guides()]
 
 
 SITEMAP_PRIORITY = {"index.html": "1.0", "privacy.html": "0.3", "guides/": "0.7"}
