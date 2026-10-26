@@ -247,6 +247,16 @@ def load_guide(slug, lang):
     return meta, raw[m.end():]
 
 
+def guide_texts(lang):
+    """Every visible string in this language's own guide files (metadata and body)."""
+    out = set()
+    for slug in all_guides():
+        meta, body = load_guide(slug, lang)
+        out |= {norm(meta[k]) for k in ("title", "description", "tag")}
+        out |= set(extract_strings("<x>" + body + "</x>"))
+    return out
+
+
 def guide_page(slug):
     return f"guides/{slug}/"
 
@@ -356,8 +366,9 @@ def build(check=False):
                                   f'<script>window.I18N = {payload};</script>\n  <script src="/app.js"></script>')
 
             if lang != "en":
-                # Strings deliberately kept identical (names, handles) are fine.
-                same = {k for k, v in d["html"].items() if k == v}
+                # Strings deliberately kept identical (names, handles) are fine, and so is anything a
+                # guide's own translation keeps as written (abbreviations such as JShShIR, tags).
+                same = {k for k, v in d["html"].items() if k == v} | guide_texts(lang)
                 remaining = (set(extract_strings(out)) & set(english)) - same
                 for s in sorted(remaining):
                     problems.append(f"[{lang}] {page}: {s}")
